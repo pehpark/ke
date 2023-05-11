@@ -46,7 +46,10 @@ fluentd:
     - containerPort: 24232
       protocol: TCP
       name: fluentd-dev
-
+      
+  podSecurityPolicy:
+    enabled: false
+    annotations: {}
 
   serviceAccount:
     create: true
