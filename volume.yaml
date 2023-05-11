@@ -12,6 +12,9 @@ spec:
     kind: PersistentVolumeClaim
     name: com-shr-apigee-fluentd-dev-varlog
     namespace: opensearch
+  hostPath:
+    path: /tmp/hostpath-provisioner/opensearch
+    type: ""
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   volumeMode: Filesystem
@@ -30,6 +33,9 @@ spec:
     kind: PersistentVolumeClaim
     name: com-shr-apigee-fluentd-dev-varlibdockercontainers
     namespace: opensearch
+  hostPath:
+    path: /tmp/hostpath-provisioner/opensearch
+    type: ""
   persistentVolumeReclaimPolicy: Retain
   storageClassName: standard
   volumeMode: Filesystem
