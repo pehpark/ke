@@ -22,33 +22,14 @@ fluentd:
 
     04_outputs.conf: |-
       <match apigeedev>
-        @type copy
-        <store>
-          @type opensearch
-          logstash_format true  #인덱스 이름을 Date로 설정
-          logstash_prefix apigee-dev-prv  #인덱스 이름 선행 접두사
-          include_tag_key true
-          <endpoint> 
-            url https://vpc-awsdc-osc-com-shr-apigee-ayjq6sc35dqsokwhrexmlpbgkq.ap-northeast-2.es.amazonaws.com
-            assume_role_arn arn:aws:iam::527449218003:role/apigee
-            region ap-northeast-2
-          </endpoint>
-        </store>
-        <store>
-          @type opensearch
-          logstash_format true #인덱스 이름을 Date로 설정
-          logstash_prefix apigee-dev-pub #인덱스 이름 선행 접두사
-          include_tag_key true 
-          remove_keys requestPayload, responsePayload, userEmail  #입력 소스 Json 내 특정 키 값을 제거 하는 기능
-          <endpoint>
-            url https://vpc-awsdc-osc-com-shr-apigee-ayjq6sc35dqsokwhrexmlpbgkq.ap-northeast-2.es.amazonaws.com
-            assume_role_arn arn:aws:iam::527449218003:role/apigee
-            region ap-northeast-2
-          </endpoint>
-        </store>
-        <store>
-          type stdout
-        </store>
+        @type opensearch
+        host opensearch-cluster-master-0
+        port 9200
+        logstash_format true
+        scheme https
+        ssl_verify false
+        user admin
+        password admin
       </match>
 
   replicaCount: 1
@@ -57,13 +38,10 @@ fluentd:
       enabled: false
 
   service:
-    annotations:
-      service.beta.kubernetes.io/aws-load-balancer-name: awsdc-nlb-com-shr-apigee-logdev
-      service.beta.kubernetes.io/aws-load-balancer-type: 'external'
-      service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: 'ip'
-      service.beta.kubernetes.io/aws-load-balancer-scheme: 'internal'
-      service.beta.kubernetes.io/aws-load-balancer-subnets: 'subnet-009b760ac175dc526, subnet-03064eeab3c6e8b02'
-    type: "LoadBalancer"
+    type: "ClusterIP"
+    annotations: {}
+    # loadBalancerIP:
+    # externalTrafficPolicy: Local
     ports:
     - containerPort: 24232
       protocol: TCP
@@ -71,8 +49,9 @@ fluentd:
 
 
   serviceAccount:
-      annotations:
-          eks.amazonaws.com/role-arn: arn:aws:iam::527449218003:role/eks-apigee-fluentd
+    create: true
+    annotations: {}
+    name: null
 
   volumes:
   - name: varlog
