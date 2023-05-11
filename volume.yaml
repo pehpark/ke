@@ -1,0 +1,65 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: com-shr-apigee-fluentd-dev-varlog
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: com-shr-apigee-fluentd-dev-varlog
+    namespace: com-shr-apigee-dev
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0dec4e0b12c6c61ef::fsap-0fc475d1650e2e80d
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: com-shr-apigee-fluentd-dev-varlibdockercontainers
+spec:
+  accessModes:
+  - ReadWriteMany
+  capacity:
+    storage: 10Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: com-shr-apigee-fluentd-dev-varlibdockercontainers
+    namespace: com-shr-apigee-dev
+  persistentVolumeReclaimPolicy: Retain
+  volumeMode: Filesystem
+  csi:
+    driver: efs.csi.aws.com
+    volumeHandle: fs-0dec4e0b12c6c61ef::fsap-096bd8ea2f89f5850
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: com-shr-apigee-fluentd-dev-varlog
+  namespace: com-shr-apigee-dev
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: com-shr-apigee-fluentd-dev-varlibdockercontainers
+  namespace: com-shr-apigee-dev
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 10Gi
