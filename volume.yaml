@@ -6,17 +6,15 @@ spec:
   accessModes:
   - ReadWriteMany
   capacity:
-    storage: 10Gi
+    storage: 1Gi
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: com-shr-apigee-fluentd-dev-varlog
-    namespace: com-shr-apigee-dev
+    namespace: opensearch
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
   volumeMode: Filesystem
-  csi:
-    driver: efs.csi.aws.com
-    volumeHandle: fs-0dec4e0b12c6c61ef::fsap-0fc475d1650e2e80d
 ---
 apiVersion: v1
 kind: PersistentVolume
@@ -26,40 +24,38 @@ spec:
   accessModes:
   - ReadWriteMany
   capacity:
-    storage: 10Gi
+    storage: 1Gi
   claimRef:
     apiVersion: v1
     kind: PersistentVolumeClaim
     name: com-shr-apigee-fluentd-dev-varlibdockercontainers
-    namespace: com-shr-apigee-dev
+    namespace: opensearch
   persistentVolumeReclaimPolicy: Retain
+  storageClassName: standard
   volumeMode: Filesystem
-  csi:
-    driver: efs.csi.aws.com
-    volumeHandle: fs-0dec4e0b12c6c61ef::fsap-096bd8ea2f89f5850
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: com-shr-apigee-fluentd-dev-varlog
-  namespace: com-shr-apigee-dev
+  namespace: opensearch
 spec:
   accessModes:
   - ReadWriteMany
-  storageClassName: ""
+  storageClassName: "standard"
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
 ---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
   name: com-shr-apigee-fluentd-dev-varlibdockercontainers
-  namespace: com-shr-apigee-dev
+  namespace: opensearch
 spec:
   accessModes:
   - ReadWriteMany
-  storageClassName: ""
+  storageClassName: "standard"
   resources:
     requests:
-      storage: 10Gi
+      storage: 1Gi
