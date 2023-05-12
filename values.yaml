@@ -23,6 +23,7 @@ fluentd:
     04_outputs.conf: |-
       <match apigeedev>
         @type opensearch
+        @log_level debug
         host opensearch-cluster-master-0
         port 9200
         logstash_format true
