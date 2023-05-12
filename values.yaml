@@ -23,10 +23,11 @@ fluentd:
     04_outputs.conf: |-
       <match **>
         @type opensearch
-        @id opensearch
+        logstash_format true  #인덱스 이름을 Date로 설정
+        logstash_prefix apigee-dev-prv  #인덱스 이름 선행 접두사
+        include_tag_key true
         @log_level debug
         index_name opensearch_dashboards_sample_data_ecommerce
-        type_name _doc
         host opensearch-cluster-master-0
         port 9200
         scheme https
