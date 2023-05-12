@@ -21,7 +21,7 @@ fluentd:
     03_dispatch.conf: |-
 
     04_outputs.conf: |-
-      <match apigeedev>
+      <match test>
         @type opensearch
         @log_level debug
         host opensearch-cluster-master-0
