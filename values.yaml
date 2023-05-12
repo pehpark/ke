@@ -21,12 +21,13 @@ fluentd:
     03_dispatch.conf: |-
 
     04_outputs.conf: |-
-      <match test*>
+      <match **>
         @type opensearch
+        @id opensearch
         @log_level debug
+        type_name _doc
         host opensearch-cluster-master-0
         port 9200
-        logstash_format true
         scheme https
         ssl_verify false
         user admin
