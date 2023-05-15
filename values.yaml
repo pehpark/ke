@@ -24,8 +24,7 @@ fluentd:
       <match **>
         @type opensearch
         logstash_format true
-        logstash_prefix apigee-dev-prv
-        include_tag_key true
+        include_tag_key false
         @log_level debug
         index_name opensearch_dashboards_sample_data_ecommerce
         host opensearch-cluster-master-0
