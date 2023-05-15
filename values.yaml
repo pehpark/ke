@@ -24,7 +24,7 @@ fluentd:
       <match **>
         @type opensearch
         @log_level debug
-        index_name opensearch_dashboards_sample_data_ecommerce
+        index_name test
         host opensearch-cluster-master-0
         port 9200
       </match>
