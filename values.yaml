@@ -24,8 +24,7 @@ fluentd:
       <match my.fluentd>
         @type opensearch
         @log_level debug
-        host opensearch-cluster-master-0
-        port 9200
+        hosts https://opensearch-cluster-master-0:9200
       </match>
 
   replicaCount: 1
