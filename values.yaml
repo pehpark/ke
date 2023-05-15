@@ -23,16 +23,10 @@ fluentd:
     04_outputs.conf: |-
       <match **>
         @type opensearch
-        logstash_format true
-        include_tag_key false
         @log_level debug
         index_name opensearch_dashboards_sample_data_ecommerce
         host opensearch-cluster-master-0
         port 9200
-        scheme https
-        ssl_verify false
-        user admin
-        password admin
       </match>
 
   replicaCount: 1
