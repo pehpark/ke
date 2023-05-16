@@ -28,6 +28,8 @@ fluentd:
           @type opensearch
           hosts https://opensearch-cluster-master:9200
           index fluentd-2023.05.16
+          user admin
+          password admin
         </store>
       </match>
 
