@@ -21,10 +21,14 @@ fluentd:
     03_dispatch.conf: |-
 
     04_outputs.conf: |-
-      <match my.fluentd>
-        @type opensearch
+      <match fluentd-*>
+        @type copy
         @log_level debug
-        hosts https://opensearch-cluster-master-0:9200
+        <store>
+          @type opensearch
+          hosts => ["https://opensearch-cluster-master:9200"]
+          index => "fluentd-2023.05.16"
+        </store>
       </match>
 
   replicaCount: 1
