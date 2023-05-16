@@ -26,6 +26,7 @@ fluentd:
         @log_level debug
         <store>
           @type opensearch
+          ssl_verify_peer false
           hosts https://opensearch-cluster-master:9200
           index fluentd-2023.05.16
           user admin
